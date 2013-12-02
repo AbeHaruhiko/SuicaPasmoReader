@@ -1,2 +1,2 @@
-include ':SuicaPasmoReader', ':App'
+include ':SuicaPasmoReader'
 include ':nfc-felica-lib'

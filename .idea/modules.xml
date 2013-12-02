@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/App/App.iml" filepath="$PROJECT_DIR$/App/App.iml" />
       <module fileurl="file://$PROJECT_DIR$/SuicaPasmoReader.iml" filepath="$PROJECT_DIR$/SuicaPasmoReader.iml" />
       <module fileurl="file://$PROJECT_DIR$/SuicaPasmoReader/SuicaPasmoReader-SuicaPasmoReader.iml" filepath="$PROJECT_DIR$/SuicaPasmoReader/SuicaPasmoReader-SuicaPasmoReader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nfc-felica/nfc-felica.iml" filepath="$PROJECT_DIR$/nfc-felica/nfc-felica.iml" />
       <module fileurl="file://$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" filepath="$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" />
     </modules>
   </component>
