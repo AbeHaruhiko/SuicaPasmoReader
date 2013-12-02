@@ -14,11 +14,7 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96d6c7c5-a1fd-4bc9-b5a7-36199c9794e4" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/SuicaPasmoReader/assets/StationCode.db" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/assets/StationCode.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/App.iml" afterPath="$PROJECT_DIR$/App/App.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" afterPath="$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" />
+    <list default="true" id="96d6c7c5-a1fd-4bc9-b5a7-36199c9794e4" name="Default" comment="assetフォルダの位置を変更&#10;&#10;Android Studioではここが正しいので。&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SuicaPasmoReader.iws" />
@@ -108,7 +104,7 @@
       <file leaf-file-name="DBUtil.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/suica/DBUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.3323442" vertical-offset="1523" max-vertical-offset="2415">
+            <state line="129" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.25986078" vertical-offset="1523" max-vertical-offset="2415">
               <folding />
             </state>
           </provider>
@@ -2815,7 +2811,11 @@
       <created>1385976698036</created>
       <updated>1385976698036</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="assetフォルダの位置を変更&#10;&#10;Android Studioではここが正しいので。">
+      <created>1385992272780</created>
+      <updated>1385992272780</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2823,14 +2823,14 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4630682" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4630682" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2090784" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2866,7 +2866,8 @@
     </option>
     <MESSAGE value="バージョン管理開始" />
     <MESSAGE value="バージョン管理開始&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="バージョン管理開始&#10;" />
+    <MESSAGE value="assetフォルダの位置を変更&#10;&#10;Android Studioではここが正しいので。" />
+    <option name="LAST_COMMIT_MESSAGE" value="assetフォルダの位置を変更&#10;&#10;Android Studioではここが正しいので。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3171,7 +3172,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/suica/DBUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.3323442" vertical-offset="1523" max-vertical-offset="2415">
+        <state line="129" column="0" selection-start="3885" selection-end="3885" vertical-scroll-proportion="0.25986078" vertical-offset="1523" max-vertical-offset="2415">
           <folding />
         </state>
       </provider>
