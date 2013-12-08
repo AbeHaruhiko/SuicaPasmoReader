@@ -23,17 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96d6c7c5-a1fd-4bc9-b5a7-36199c9794e4" name="Default" comment="assetフォルダの位置を変更&#10;&#10;Android Studioではここが正しいので。&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/drawable-hdpi/ic_action_refresh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/drawable-mdpi/ic_action_refresh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/drawable-xhdpi/ic_action_refresh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/drawable-xxhdpi/ic_action_refresh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/xml/nfc_filter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/ComGoogleAndroidGmsPlayServices3136_aar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/SuicaPasmoReader-SuicaPasmoReader.iml" afterPath="$PROJECT_DIR$/SuicaPasmoReader/SuicaPasmoReader-SuicaPasmoReader.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/build.gradle" afterPath="$PROJECT_DIR$/SuicaPasmoReader/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/menu/main.xml" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/menu/main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" afterPath="$PROJECT_DIR$/nfc-felica-lib/nfc-felica-lib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SuicaPasmoReader.iws" />
@@ -120,16 +113,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="57" selection-start="837" selection-end="837" vertical-scroll-proportion="0.7628459" vertical-offset="199" max-vertical-offset="705">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PollingResponse.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/PollingResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="13" selection-start="911" selection-end="911" vertical-scroll-proportion="-7.076923" vertical-offset="26" max-vertical-offset="930">
-              <folding>
-                <element signature="e#0#2303#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#1562#1563#0" expanded="false" />
-                <element signature="e#1593#1594#0" expanded="false" />
-              </folding>
+            <state line="29" column="13" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1185">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,15 +134,8 @@
       <file leaf-file-name="FeliCaLiteTag.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/FeliCaLiteTag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="38" selection-start="3882" selection-end="3882" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="3075">
-              <folding>
-                <element signature="e#0#8311#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#4823#4824#0" expanded="false" />
-                <element signature="e#4854#4855#0" expanded="false" />
-                <element signature="e#5002#5003#0" expanded="false" />
-                <element signature="e#5033#5034#0" expanded="false" />
-              </folding>
+            <state line="120" column="38" selection-start="3882" selection-end="3882" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="3600">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,11 +143,8 @@
       <file leaf-file-name="NfcFeliCaTagFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/NfcFeliCaTagFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="13" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="2955">
-              <folding>
-                <element signature="e#0#7333#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state line="36" column="13" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3270">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,11 +152,8 @@
       <file leaf-file-name="NFCTagSample.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/NFCTagSample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="13" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <folding>
-                <element signature="e#0#952#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state line="25" column="13" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="570">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -177,22 +161,17 @@
       <file leaf-file-name="nfc_filter.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/xml/nfc_filter.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-              <folding>
-                <marker date="1386058729000" expanded="true" signature="101:682" placeholder="..." />
-              </folding>
+            <state line="14" column="0" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="330">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/menu/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="661" selection-end="661" vertical-scroll-proportion="0.8955224" vertical-offset="0" max-vertical-offset="330">
-              <folding>
-                <element signature="e#274#298#0" expanded="true" />
-                <element signature="e#491#516#0" expanded="true" />
-              </folding>
+            <state line="16" column="0" selection-start="661" selection-end="661" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="330">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,7 +179,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="44" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+            <state line="10" column="44" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="405">
               <folding />
             </state>
           </provider>
@@ -213,22 +192,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IFeliCaCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/IFeliCaCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <folding>
-                <element signature="e#0#946#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FeliCaLib.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/lib/FeliCaLib.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="968" column="33" selection-start="35815" selection-end="35815" vertical-scroll-proportion="0.0" vertical-offset="12811" max-vertical-offset="14145">
+            <state line="968" column="33" selection-start="35815" selection-end="35815" vertical-scroll-proportion="0.0" vertical-offset="14520" max-vertical-offset="14700">
               <folding />
             </state>
           </provider>
@@ -1139,6 +1106,11 @@
                 <option name="name" value="prepareComAndroidSupportAppcompatV71900Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services:3.1.36" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/SuicaPasmoReader" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServices3136Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/SuicaPasmoReader" />
                 <option name="name" value="prepareDefaultFlavorDebugDependencies" />
               </ExternalTaskPojo>
@@ -1569,7 +1541,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1385962775000" />
+        <entry key="$PROJECT_DIR$" value="1385986127000" />
         <entry key="$PROJECT_DIR$/../suicaTmp/svn/nfc-felica/trunk" value="1385962060000" />
       </map>
     </option>
@@ -1588,10 +1560,10 @@
         <option value="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/layout/fragment_main.xml" />
         <option value="$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/suica/DBUtil.java" />
         <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/SuicaPasmoReader/build.gradle" />
         <option value="$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/xml/nfc_filter.xml" />
         <option value="$PROJECT_DIR$/SuicaPasmoReader/src/main/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/SuicaPasmoReader/build.gradle" />
       </list>
     </option>
   </component>
@@ -1625,8 +1597,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1931,26 +1901,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuicaPasmoReader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SuicaPasmoReader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nfc-felica-lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1961,8 +1915,8 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="54d3c7e" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="a" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="4.3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -2239,15 +2193,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32901135" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4511692" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4630682" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -2255,7 +2207,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5042614" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.56107956" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24147727" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21150729" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2268,6 +2220,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4511692" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2292,6 +2246,18 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/IFeliCaCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="585" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/lib/FeliCaLib.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="968" column="33" selection-start="35815" selection-end="35815" vertical-scroll-proportion="0.0" vertical-offset="14520" max-vertical-offset="14700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/SuicaPasmoReader-SuicaPasmoReader.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470" />
@@ -2299,16 +2265,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="255">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="255" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="8" column="0" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225" />
       </provider>
       <provider editor-type-id="android-designer">
         <state />
@@ -2316,9 +2278,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/layout/fragment_main.xml">
       <provider editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1305">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1305" />
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -2333,17 +2293,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/jp/caliconography/suicapasmoreader/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="40" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="3660">
-          <folding />
-        </state>
+        <state line="28" column="40" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="3660" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="17" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="540">
-          <folding>
-            <element signature="e#382#405#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2402,30 +2358,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/encodings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="328">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="328" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/gradle.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <folding />
-        </state>
+        <state line="12" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/jp/caliconography/suicapasmoreader/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="40" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="3660">
-          <folding />
-        </state>
+        <state line="28" column="40" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="3660" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
@@ -2435,9 +2383,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="8" column="0" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="225" />
       </provider>
       <provider editor-type-id="android-designer">
         <state />
@@ -2445,9 +2391,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/layout/fragment_main.xml">
       <provider editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215" />
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -2455,11 +2399,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/suica/Suica.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="0" selection-start="6214" selection-end="6214" vertical-scroll-proportion="0.0" vertical-offset="2033" max-vertical-offset="5265">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="174" column="0" selection-start="6214" selection-end="6214" vertical-scroll-proportion="0.0" vertical-offset="2033" max-vertical-offset="5265" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/ReadResponse.java">
@@ -2506,9 +2446,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="25" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
-          <folding />
-        </state>
+        <state line="1" column="25" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
@@ -2530,70 +2468,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/IFeliCaCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-          <folding>
-            <element signature="e#0#946#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="26" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/command/PollingResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="911" selection-end="911" vertical-scroll-proportion="-7.076923" vertical-offset="26" max-vertical-offset="930">
-          <folding>
-            <element signature="e#0#2303#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1562#1563#0" expanded="false" />
-            <element signature="e#1593#1594#0" expanded="false" />
-          </folding>
+        <state line="29" column="13" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1185">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/FeliCaLiteTag.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="120" column="38" selection-start="3882" selection-end="3882" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="3075">
-          <folding>
-            <element signature="e#0#8311#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#4823#4824#0" expanded="false" />
-            <element signature="e#4854#4855#0" expanded="false" />
-            <element signature="e#5002#5003#0" expanded="false" />
-            <element signature="e#5033#5034#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/felica/NfcFeliCaTagFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="13" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="2955">
-          <folding>
-            <element signature="e#0#7333#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/java/net/kazzz/NFCTagSample.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="13" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <folding>
-            <element signature="e#0#952#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="18" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="690">
           <folding />
         </state>
       </provider>
@@ -2601,15 +2507,6 @@
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/xml/nfc_filter.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="0" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <folding>
-            <marker date="1386058729000" expanded="true" signature="101:682" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/lib/FeliCaLib.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="968" column="33" selection-start="35815" selection-end="35815" vertical-scroll-proportion="0.0" vertical-offset="12811" max-vertical-offset="14145">
           <folding />
         </state>
       </provider>
@@ -2635,11 +2532,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/src/main/res/menu/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="661" selection-end="661" vertical-scroll-proportion="0.8955224" vertical-offset="0" max-vertical-offset="330">
-          <folding>
-            <element signature="e#274#298#0" expanded="true" />
-            <element signature="e#491#516#0" expanded="true" />
-          </folding>
+        <state line="16" column="0" selection-start="661" selection-end="661" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nfc-felica-lib/src/net/kazzz/felica/lib/FeliCaLib.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="968" column="33" selection-start="35815" selection-end="35815" vertical-scroll-proportion="0.0" vertical-offset="12811" max-vertical-offset="14145">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuicaPasmoReader/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="57" selection-start="837" selection-end="837" vertical-scroll-proportion="0.7628459" vertical-offset="199" max-vertical-offset="705">
+          <folding />
         </state>
       </provider>
     </entry>
