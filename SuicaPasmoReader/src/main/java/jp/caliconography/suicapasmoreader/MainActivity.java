@@ -123,10 +123,10 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                             break;
                         case R.id.btn_write:
                             try {
-//                                Intent intent =
-//                                        new Intent(NFCTagReader.this, NFCTagWriter.class);
+                                Intent intent =
+                                        new Intent(null, DriveHelper.class);
 //                                intent.putExtra("nfcTag", mLastFragment.getNfcTag());
-//                                startActivity(intent);
+                                startActivity(intent);
                                 return "";
                             } catch (Exception e) {
                                 e.printStackTrace();

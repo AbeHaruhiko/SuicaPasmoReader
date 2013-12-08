@@ -17,5 +17,7 @@
     <string name="history_label">利用履歴</string>
     <string name="inout_label">入退場履歴</string>
     <string name="action_refresh">refresh</string>
+    <string name="save">save</string>
+    <string name="load">load</string>
 
 </resources>
