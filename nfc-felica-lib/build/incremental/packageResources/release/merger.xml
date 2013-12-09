@@ -2,11 +2,11 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="/Users/abe/projects/SuicaPasmoReader/nfc-felica-lib/res" />
-        <source path="/Users/abe/projects/SuicaPasmoReader/nfc-felica-lib/build/res/rs/release" />
+        <source path="/Users/abeharuhiko/project/SuicaPasmoReader/nfc-felica-lib/res" />
+        <source path="/Users/abeharuhiko/project/SuicaPasmoReader/nfc-felica-lib/build/res/rs/release" />
     </dataSet>
     <dataSet config="release" >
-        <source path="/Users/abe/projects/SuicaPasmoReader/nfc-felica-lib/build-types/release/res" />
+        <source path="/Users/abeharuhiko/project/SuicaPasmoReader/nfc-felica-lib/build-types/release/res" />
     </dataSet>
 
 </merger>
