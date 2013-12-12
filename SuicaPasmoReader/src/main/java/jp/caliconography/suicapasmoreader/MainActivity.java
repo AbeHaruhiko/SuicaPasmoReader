@@ -26,7 +26,7 @@ import net.kazzz.felica.lib.FeliCaLib;
 
 public class MainActivity extends ActionBarActivity  implements View.OnClickListener, AbstractNfcTagFragment.INfcTagListener {
 
-    private String TAG = "NFCTagReader";
+    private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
     private NfcFeliCaTagFragment mFeliCafragment;
 
@@ -124,7 +124,7 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                         case R.id.btn_write:
                             try {
                                 Intent intent =
-                                        new Intent(null, DriveHelper.class);
+                                        new Intent(getApplicationContext(), DriveHelper.class);
 //                                intent.putExtra("nfcTag", mLastFragment.getNfcTag());
                                 startActivity(intent);
                                 return "";
