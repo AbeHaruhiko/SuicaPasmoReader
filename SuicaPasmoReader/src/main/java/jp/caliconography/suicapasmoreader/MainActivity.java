@@ -61,10 +61,63 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){ // if使うとエラー（itemがInt形式なため）
+            case android.R.id.home:   // アプリアイコン（ホームアイコン）を押した時の処理
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.action_refresh:
+
+
+
+                try {
+                    final ProgressDialog dialog = new ProgressDialog(this);
+                    dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    dialog.setIndeterminate(true);
+
+                    AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+                        @Override
+                        protected void onPreExecute() {
+                            dialog.setMessage("読み込み中...");
+                            dialog.show();
+                        }
+
+                        @Override
+                        protected String doInBackground(Void... arg0) {
+                            try {
+                                if ( mLastFragment != null && mLastFragment instanceof NfcFeliCaTagFragment) {
+                                    NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFragment;
+                                    return nfcf.dumpFeliCaHistoryData();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            return "";
+                        }
+
+                        /* (non-Javadoc)
+                         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+                         */
+                        @Override
+                        protected void onPostExecute(String result) {
+                            dialog.dismiss();
+                            TextView tv_tag = (TextView) findViewById(R.id.result_tv);
+                            if (result != null && result.length() > 0) tv_tag.setText(result);
+                        }
+                    };
+
+                    task.execute();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -164,6 +217,8 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
             e.printStackTrace();
         }
     }
+
+
     /* (non-Javadoc)
      * @see android.app.Activity#onNewIntent(android.content.Intent)
      */
@@ -182,19 +237,19 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
         //TextView tv_tag = (TextView) findViewById(R.id.result_tv);
 
         Button btnRead = (Button) findViewById(R.id.btn_read);
-        btnRead.setOnClickListener(this);
-
+//        btnRead.setOnClickListener(this);
+//
         Button btnHistory = (Button) findViewById(R.id.btn_hitory);
-        btnHistory.setOnClickListener(this);
-        btnHistory.setEnabled(false);
-
+//        btnHistory.setOnClickListener(this);
+//        btnHistory.setEnabled(false);
+//
         Button btnWrite = (Button) findViewById(R.id.btn_write);
-        btnWrite.setOnClickListener(this);
-        btnWrite.setEnabled(false);
-
-        Button btnInout = (Button) findViewById(R.id.btn_inout);
-        btnInout.setOnClickListener(this);
-        btnInout.setEnabled(false);
+//        btnWrite.setOnClickListener(this);
+//        btnWrite.setEnabled(false);
+//
+//        Button btnInout = (Button) findViewById(R.id.btn_inout);
+//        btnInout.setOnClickListener(this);
+//        btnInout.setEnabled(false);
 
         try {
 
@@ -215,7 +270,8 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                     btnHistory.setEnabled(!isFeliCatLite);
                     btnWrite.setEnabled(isFeliCatLite);
 
-                    btnRead.performClick();
+//                    btnRead.performClick();
+                    btnHistory.performClick();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());

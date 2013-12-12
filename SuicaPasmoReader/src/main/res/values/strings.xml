@@ -16,7 +16,7 @@
     <string name="hint_label">16バイト以内で入力</string>
     <string name="history_label">利用履歴</string>
     <string name="inout_label">入退場履歴</string>
-    <string name="action_refresh">refresh</string>
+    <string name="action_refresh">再読み込み</string>
     <string name="save">save</string>
     <string name="load">load</string>
 
