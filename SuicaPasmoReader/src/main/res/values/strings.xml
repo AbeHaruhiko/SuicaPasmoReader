@@ -19,5 +19,6 @@
     <string name="action_refresh">再読み込み</string>
     <string name="save">save</string>
     <string name="load">load</string>
+    <string name="action_save">保存</string>
 
 </resources>

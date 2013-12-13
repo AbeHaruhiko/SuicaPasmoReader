@@ -10,6 +10,7 @@ import java.util.Arrays;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.http.ByteArrayContent;
@@ -24,9 +27,12 @@ import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.Files.Insert;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
 
 /**
  * Created by abe on 2013/12/08.
@@ -98,6 +104,46 @@ public class DriveHelper extends Activity {
             @Override
             public void run() {
                 try {
+
+                    // http://stackoverflow.com/questions/13229294/how-do-i-create-a-google-spreadsheet-with-a-service-account-and-share-to-other-g
+                    com.google.api.services.drive.model.File  file = new com.google.api.services.drive.model.File();
+                    file.setTitle("test");
+                    file.setMimeType("application/vnd.google-apps.spreadsheet");
+                    Insert insert = service.files().insert(file);
+
+                    file = insert.execute();
+
+                    GoogleCredential credential = new GoogleCredential.Builder()
+                            .setTransport(AndroidHttp.newCompatibleTransport())
+                            .setJsonFactory(new AndroidJsonFactory())
+                            .setServiceAccountId("caliconography@caliconography.jp")
+                            .setServiceAccountScopes(Arrays.asList("https://spreadsheets.google.com/feeds"))
+                            .setServiceAccountPrivateKeyFromP12File(new File("path to the P12File"))
+//                            .setServiceAccountUser(credential.getServiceAccountUser())
+                            .build();
+                    SpreadsheetService service = new SpreadsheetService("MySpreadsheetIntegration-v1");
+                    service.setOAuth2Credentials(credential);
+
+                    SpreadsheetService s = googleConn.getSpreadSheetService();
+                    String spreadsheetURL = "https://spreadsheets.google.com/feeds/spreadsheets/" + file.getId();
+                    SpreadsheetEntry spreadsheet = s.getEntry(new URL(spreadsheetURL), SpreadsheetEntry.class);
+
+                    WorksheetFeed worksheetFeed = s.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+                    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+                    WorksheetEntry worksheet = worksheets.get(0);
+
+                    URL cellFeedUrl= worksheet.getCellFeedUrl ();
+                    CellFeed cellFeed= s.getFeed (cellFeedUrl, CellFeed.class);
+
+                    CellEntry cellEntry= new CellEntry (1, 1, "aa");
+                    cellFeed.insert (cellEntry);
+
+
+
+
+
+
+
                     // 指定のタイトルのファイルの ID を取得
                     String fileIdOrNull = null;
                     FileList list = service.files().list().execute();

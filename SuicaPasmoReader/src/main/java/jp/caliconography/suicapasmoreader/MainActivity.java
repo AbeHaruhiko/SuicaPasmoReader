@@ -45,6 +45,10 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
         mFeliCafragment = new NfcFeliCaTagFragment(this);
         mFeliCafragment.addNfcTagListener(this);
 
+        //インテントから起動された際の処理
+        Intent intent = this.getIntent();
+        this.onNewIntent(intent);
+
     }
 
 
@@ -67,6 +71,7 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
+
             case R.id.action_refresh:
 
 
@@ -236,14 +241,17 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
     public void onTagDiscovered(Intent intent, Parcelable nfcTag, AbstractNfcTagFragment fragment) {
         //TextView tv_tag = (TextView) findViewById(R.id.result_tv);
 
-        Button btnRead = (Button) findViewById(R.id.btn_read);
+//        Button btnRead = (Button) findViewById(R.id.btn_read);
 //        btnRead.setOnClickListener(this);
 //
         Button btnHistory = (Button) findViewById(R.id.btn_hitory);
+        if (btnHistory == null) {
+            btnHistory = (Button) getLayoutInflater().inflate(R.layout.fragment_main, null).findViewById(R.id.btn_hitory);
+        }
 //        btnHistory.setOnClickListener(this);
 //        btnHistory.setEnabled(false);
 //
-        Button btnWrite = (Button) findViewById(R.id.btn_write);
+//        Button btnWrite = (Button) findViewById(R.id.btn_write);
 //        btnWrite.setOnClickListener(this);
 //        btnWrite.setEnabled(false);
 //
@@ -267,21 +275,22 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                         throw new FeliCaException("Felica IDm を取得できませんでした");
                     }
 
-                    btnHistory.setEnabled(!isFeliCatLite);
-                    btnWrite.setEnabled(isFeliCatLite);
+//                    btnHistory.setEnabled(!isFeliCatLite);
+//                    btnWrite.setEnabled(isFeliCatLite);
 
 //                    btnRead.performClick();
                     btnHistory.performClick();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());
                 }
-                btnHistory.setEnabled(!isFeliCatLite);
-                btnWrite.setEnabled(isFeliCatLite);
+//                btnHistory.setEnabled(!isFeliCatLite);
+//                btnWrite.setEnabled(isFeliCatLite);
             } else {
-                btnRead.performClick();
-                btnHistory.setEnabled(false);
-                btnWrite.setEnabled(true);
+//                btnRead.performClick();
+//                btnHistory.setEnabled(false);
+//                btnWrite.setEnabled(true);
             }
 
         } catch ( Exception e ) {

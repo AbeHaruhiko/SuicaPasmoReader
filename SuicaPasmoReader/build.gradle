@@ -42,4 +42,5 @@ dependencies {
     compile 'com.google.http-client:google-http-client-gson:1.16.0-rc'
     compile 'com.google.api-client:google-api-client-android:1.16.0-rc'
     compile 'com.android.support:support-v4:13.0.0'
+    compile 'com.google.gdata:core:1.47.1'
 }
