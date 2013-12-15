@@ -4,19 +4,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
+import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.http.AndroidHttpClient;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -32,18 +41,27 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
+import com.google.gdata.data.spreadsheet.CellEntry;
+import com.google.gdata.data.spreadsheet.CellFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
+import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
+import com.google.gdata.data.spreadsheet.WorksheetEntry;
+import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import com.google.gdata.util.ServiceException;
 
 /**
  * Created by abe on 2013/12/08.
  */
 public class DriveHelper extends Activity {
+    private String TAG = this.getClass().getSimpleName();
+
     static final int REQUEST_ACCOUNT_PICKER = 1;
     static final int REQUEST_AUTHORIZATION = 2;
 
     static final String FILE_TITLE = "google_drive_test";
 
     private Drive service = null;
+    private SpreadsheetService s;
     private GoogleAccountCredential credential = null;
 
     @Override
@@ -81,11 +99,52 @@ public class DriveHelper extends Activity {
         switch (requestCode) {
             case REQUEST_ACCOUNT_PICKER:
                 if (resultCode == RESULT_OK && data != null && data.getExtras() != null) {
-                    String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+//                    String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                    final String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
                     if (accountName != null) {
                         credential.setSelectedAccountName(accountName);
                         service = getDriveService(credential);
                     }
+
+                    // http://www.blogface.org/2013/07/reading-google-spreadsheets-from.html
+                    Log.d(TAG, accountName);
+
+                    (new AsyncTask<String, String,String>(){
+                        @Override
+                        protected String doInBackground(String... arg0) {
+                            try {
+                                // Turn account name into a token, which must
+                                // be done in a background task, as it contacts
+                                // the network.
+                                String token = GoogleAuthUtil.getToken(getApplicationContext(),
+                                                accountName,
+                                                "oauth2:https://spreadsheets.google.com/feeds https://docs.google.com/feeds");
+                                Log.d(TAG, "Token: " + token);
+
+                                // Now that we have the token, can we actually list
+                                // the spreadsheets or anything...
+                                s = new SpreadsheetService("SuicaPasumoReader");
+                                s.setAuthSubToken(token);
+
+                            } catch (UserRecoverableAuthException e) {
+                                // This is NECESSARY so the user can say, "yeah I want
+                                // this app to have permission to read my spreadsheet."
+                                Intent recoveryIntent = e.getIntent();
+                                startActivityForResult(recoveryIntent, 2);
+                            } catch (IOException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            } catch (GoogleAuthException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                            return null;
+                        }}).execute();
+
+
+
+
+
                 }
                 break;
             case REQUEST_AUTHORIZATION:
@@ -106,65 +165,75 @@ public class DriveHelper extends Activity {
                 try {
 
                     // http://stackoverflow.com/questions/13229294/how-do-i-create-a-google-spreadsheet-with-a-service-account-and-share-to-other-g
-                    com.google.api.services.drive.model.File  file = new com.google.api.services.drive.model.File();
-                    file.setTitle("test");
-                    file.setMimeType("application/vnd.google-apps.spreadsheet");
-                    Insert insert = service.files().insert(file);
 
-                    file = insert.execute();
+                    // Define the URL to request.  This should never change.
+                    // (Magic URL good for all users.)
+                    URL SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 
-                    GoogleCredential credential = new GoogleCredential.Builder()
-                            .setTransport(AndroidHttp.newCompatibleTransport())
-                            .setJsonFactory(new AndroidJsonFactory())
-                            .setServiceAccountId("caliconography@caliconography.jp")
-                            .setServiceAccountScopes(Arrays.asList("https://spreadsheets.google.com/feeds"))
-                            .setServiceAccountPrivateKeyFromP12File(new File("path to the P12File"))
-//                            .setServiceAccountUser(credential.getServiceAccountUser())
-                            .build();
-                    SpreadsheetService service = new SpreadsheetService("MySpreadsheetIntegration-v1");
-                    service.setOAuth2Credentials(credential);
+                    // Make a request to the API and get all spreadsheets.
+                    SpreadsheetFeed feed;
+                    try {
+                        feed = s.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
+                        List<SpreadsheetEntry> spreadsheets = feed.getEntries();
 
-                    SpreadsheetService s = googleConn.getSpreadSheetService();
-                    String spreadsheetURL = "https://spreadsheets.google.com/feeds/spreadsheets/" + file.getId();
-                    SpreadsheetEntry spreadsheet = s.getEntry(new URL(spreadsheetURL), SpreadsheetEntry.class);
+//                        // Iterate through all of the spreadsheets returned
+//                        for (SpreadsheetEntry spreadsheet : spreadsheets) {
+//                            // Print the title of this spreadsheet to the screen
+//                            Log.d(TAG, spreadsheet.getTitle().getPlainText());
+//                        }
 
-                    WorksheetFeed worksheetFeed = s.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
-                    List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
-                    WorksheetEntry worksheet = worksheets.get(0);
+                        com.google.api.services.drive.model.File  file = new com.google.api.services.drive.model.File();
+                        file.setTitle(new Date().toString());
+                        file.setMimeType("application/vnd.google-apps.spreadsheet");
+                        Insert insert = service.files().insert(file);
 
-                    URL cellFeedUrl= worksheet.getCellFeedUrl ();
-                    CellFeed cellFeed= s.getFeed (cellFeedUrl, CellFeed.class);
+                        file = insert.execute();
 
-                    CellEntry cellEntry= new CellEntry (1, 1, "aa");
-                    cellFeed.insert (cellEntry);
+                        String spreadsheetURL = "https://spreadsheets.google.com/feeds/spreadsheets/" + file.getId();
+                        SpreadsheetEntry spreadsheet = s.getEntry(new URL(spreadsheetURL), SpreadsheetEntry.class);
+
+                        WorksheetFeed worksheetFeed = s.getFeed(spreadsheet.getWorksheetFeedUrl(), WorksheetFeed.class);
+                        List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
+                        WorksheetEntry worksheet = worksheets.get(0);
+
+                        URL cellFeedUrl= worksheet.getCellFeedUrl ();
+                        CellFeed cellFeed= s.getFeed (cellFeedUrl, CellFeed.class);
+
+                        CellEntry cellEntry= new CellEntry (1, 1, "aa");
+                        cellFeed.insert (cellEntry);
 
 
-
-
-
-
-
-                    // 指定のタイトルのファイルの ID を取得
-                    String fileIdOrNull = null;
-                    FileList list = service.files().list().execute();
-                    for (File f : list.getItems()) {
-                        if (FILE_TITLE.equals(f.getTitle())) {
-                            fileIdOrNull = f.getId();
-                        }
+                    } catch (ServiceException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
 
-                    File body = new File();
-                    body.setTitle(FILE_TITLE);//fileContent.getName());
-                    body.setMimeType("text/plain");
 
-                    ByteArrayContent content = new ByteArrayContent("text/plain", inputText.getBytes(Charset.forName("UTF-8")));
-                    if (fileIdOrNull == null) {
-                        service.files().insert(body, content).execute();
-                        showToast("insert!");
-                    } else {
-                        service.files().update(fileIdOrNull, body, content).execute();
-                        showToast("update!");
-                    }
+
+
+
+
+//                    // 指定のタイトルのファイルの ID を取得
+//                    String fileIdOrNull = null;
+//                    FileList list = service.files().list().execute();
+//                    for (File f : list.getItems()) {
+//                        if (FILE_TITLE.equals(f.getTitle())) {
+//                            fileIdOrNull = f.getId();
+//                        }
+//                    }
+//
+//                    File body = new File();
+//                    body.setTitle(FILE_TITLE);//fileContent.getName());
+//                    body.setMimeType("text/plain");
+//
+//                    ByteArrayContent content = new ByteArrayContent("text/plain", inputText.getBytes(Charset.forName("UTF-8")));
+//                    if (fileIdOrNull == null) {
+//                        service.files().insert(body, content).execute();
+//                        showToast("insert!");
+//                    } else {
+//                        service.files().update(fileIdOrNull, body, content).execute();
+//                        showToast("update!");
+//                    }
                     // TODO 失敗時の処理?
                 } catch (UserRecoverableAuthIOException e) {
                     startActivityForResult(e.getIntent(), REQUEST_AUTHORIZATION);
