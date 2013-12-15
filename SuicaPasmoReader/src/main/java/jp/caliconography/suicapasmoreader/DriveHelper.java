@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +50,12 @@ import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 import com.google.gdata.util.ServiceException;
 
+import org.apache.poi.ss.usermodel.Workbook;
+
+import jp.caliconography.suicapasmoreader.util.ExcelFileUtil;
+import jp.caliconography.suicapasmoreader.util.ReportData;
+import jp.caliconography.suicapasmoreader.util.SimpleReportCreator;
+
 /**
  * Created by abe on 2013/12/08.
  */
@@ -82,7 +89,7 @@ public class DriveHelper extends Activity {
             @Override
             public void onClick(View v) {
                 showToast("save");
-                saveTextToDrive();
+//                saveTextToDrive();
             }
         });
         ((Button)findViewById(R.id.loadButton)).setOnClickListener(new View.OnClickListener() {
@@ -149,7 +156,7 @@ public class DriveHelper extends Activity {
                 break;
             case REQUEST_AUTHORIZATION:
                 if (resultCode == Activity.RESULT_OK) {
-                    saveTextToDrive();
+//                    saveTextToDrive();
                 } else {
                     startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
                 }
@@ -157,6 +164,29 @@ public class DriveHelper extends Activity {
         }
     }
 
+//    private void saveTextToDrive() {
+//
+//        // create workbook
+//        Workbook wb = null;
+//        try {
+//            wb = ExcelFileUtil.getWorkbook(getAssets(), "template.xlsx");
+//
+//            // create data
+//            List<ReportData> dataList = new ArrayList<ReportData>();
+////          dataList.add(setData(1));
+////          dataList.add(setData(2));
+//
+//            SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
+//
+//            ExcelFileUtil.write(reportCreator.create(), "経費精算書" + new Date().toString() + ".xlsx");
+//        } catch (Exception e) {
+//            // TODO
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+/*
     private void saveTextToDrive() {
         final String inputText = ((EditText)findViewById(R.id.editText)).getText().toString();
         Thread t = new Thread(new Runnable() {
@@ -176,11 +206,19 @@ public class DriveHelper extends Activity {
                         feed = s.getFeed(SPREADSHEET_FEED_URL, SpreadsheetFeed.class);
                         List<SpreadsheetEntry> spreadsheets = feed.getEntries();
 
-//                        // Iterate through all of the spreadsheets returned
-//                        for (SpreadsheetEntry spreadsheet : spreadsheets) {
-//                            // Print the title of this spreadsheet to the screen
-//                            Log.d(TAG, spreadsheet.getTitle().getPlainText());
-//                        }
+                        // Iterate through all of the spreadsheets returned
+                        SpreadsheetEntry template = null;
+                        for (SpreadsheetEntry spreadsheet : spreadsheets) {
+                            // Print the title of this spreadsheet to the screen
+                            Log.d(TAG, spreadsheet.getTitle().getPlainText());
+                            if ("経費精算書".equals(spreadsheet.getTitle().getPlainText())) {
+                                template = spreadsheet;
+                                break;
+                            }
+                        }
+                        Log.d(TAG, "あった！" + template.getTitle().getPlainText());
+                        Log.d(TAG, template.getDefaultWorksheet().getXmlBlob().getBlob());
+//                        Log.d(TAG, template.getXmlBlob().getBlob());
 
                         com.google.api.services.drive.model.File  file = new com.google.api.services.drive.model.File();
                         file.setTitle(new Date().toString());
@@ -245,6 +283,7 @@ public class DriveHelper extends Activity {
         });
         t.start();
     }
+*/
 
     private void loadTextFromDrive() {
         Thread t = new Thread(new Runnable() {
