@@ -65,6 +65,7 @@ public class SimpleReportCreator {
         for (int sheetIndex = 0; sheetIndex < numOfSheet; sheetIndex++) {
             Sheet sheet = wb.getSheetAt(sheetIndex);
 
+/*
             // ワークシートに対応するデータを取得
             reportData = reportList.get(sheetIndex);
             headerMap = reportData.getHeader().getDataMap();
@@ -100,6 +101,7 @@ public class SimpleReportCreator {
                     }
                 }
             }
+*/
         }
         // 完成したワークブックオブジェクトを戻す
         return wb;

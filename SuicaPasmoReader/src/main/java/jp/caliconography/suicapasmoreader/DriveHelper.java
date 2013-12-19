@@ -24,31 +24,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.GoogleAuthException;
-import com.google.android.gms.auth.GoogleAuthUtil;
-import com.google.android.gms.auth.UserRecoverableAuthException;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-import com.google.api.client.http.ByteArrayContent;
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.Drive.Files.Insert;
-import com.google.api.services.drive.DriveScopes;
-import com.google.api.services.drive.model.File;
-import com.google.api.services.drive.model.FileList;
-import com.google.gdata.client.spreadsheet.SpreadsheetService;
-import com.google.gdata.data.spreadsheet.CellEntry;
-import com.google.gdata.data.spreadsheet.CellFeed;
-import com.google.gdata.data.spreadsheet.SpreadsheetEntry;
-import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
-import com.google.gdata.data.spreadsheet.WorksheetEntry;
-import com.google.gdata.data.spreadsheet.WorksheetFeed;
-import com.google.gdata.util.ServiceException;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -67,9 +42,9 @@ public class DriveHelper extends Activity {
 
     static final String FILE_TITLE = "google_drive_test";
 
-    private Drive service = null;
-    private SpreadsheetService s;
-    private GoogleAccountCredential credential = null;
+//    private Drive service = null;
+//    private SpreadsheetService s;
+//    private GoogleAccountCredential credential = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,23 +55,23 @@ public class DriveHelper extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (service == null) {
-            credential = GoogleAccountCredential.usingOAuth2(this, Arrays.asList(DriveScopes.DRIVE));
-            startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
-        }
+//        if (service == null) {
+//            credential = GoogleAccountCredential.usingOAuth2(this, Arrays.asList(DriveScopes.DRIVE));
+//            startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+//        }
 
         ((Button)findViewById(R.id.saveButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showToast("save");
-//                saveTextToDrive();
+                saveTextToDrive();
             }
         });
         ((Button)findViewById(R.id.loadButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showToast("load");
-                loadTextFromDrive();
+//                loadTextFromDrive();
             }
         });
     }
@@ -109,13 +84,14 @@ public class DriveHelper extends Activity {
 //                    String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
                     final String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
                     if (accountName != null) {
-                        credential.setSelectedAccountName(accountName);
-                        service = getDriveService(credential);
+//                        credential.setSelectedAccountName(accountName);
+//                        service = getDriveService(credential);
                     }
 
                     // http://www.blogface.org/2013/07/reading-google-spreadsheets-from.html
                     Log.d(TAG, accountName);
 
+/*
                     (new AsyncTask<String, String,String>(){
                         @Override
                         protected String doInBackground(String... arg0) {
@@ -147,6 +123,7 @@ public class DriveHelper extends Activity {
                             }
                             return null;
                         }}).execute();
+*/
 
 
 
@@ -156,35 +133,35 @@ public class DriveHelper extends Activity {
                 break;
             case REQUEST_AUTHORIZATION:
                 if (resultCode == Activity.RESULT_OK) {
-//                    saveTextToDrive();
+                    saveTextToDrive();
                 } else {
-                    startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+//                    startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
                 }
                 break;
         }
     }
 
-//    private void saveTextToDrive() {
-//
-//        // create workbook
-//        Workbook wb = null;
-//        try {
-//            wb = ExcelFileUtil.getWorkbook(getAssets(), "template.xlsx");
-//
-//            // create data
-//            List<ReportData> dataList = new ArrayList<ReportData>();
-////          dataList.add(setData(1));
-////          dataList.add(setData(2));
-//
-//            SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
-//
-//            ExcelFileUtil.write(reportCreator.create(), "経費精算書" + new Date().toString() + ".xlsx");
-//        } catch (Exception e) {
-//            // TODO
-//            e.printStackTrace();
-//        }
-//
-//    }
+    private void saveTextToDrive() {
+
+        // create workbook
+        Workbook wb = null;
+        try {
+            wb = ExcelFileUtil.getWorkbook(getAssets(), "template.xls");
+
+            // create data
+            List<ReportData> dataList = new ArrayList<ReportData>();
+//          dataList.add(setData(1));
+//          dataList.add(setData(2));
+
+            SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
+
+            ExcelFileUtil.write(reportCreator.create(), "経費精算書.xls");
+        } catch (Exception e) {
+            // TODO
+            e.printStackTrace();
+        }
+
+    }
 
 /*
     private void saveTextToDrive() {
@@ -285,6 +262,7 @@ public class DriveHelper extends Activity {
     }
 */
 
+/*
     private void loadTextFromDrive() {
         Thread t = new Thread(new Runnable() {
             @Override
@@ -329,7 +307,9 @@ public class DriveHelper extends Activity {
         });
         t.start();
     }
+*/
 
+/*
     // https://developers.google.com/drive/v2/reference/files/get より
     private static InputStream downloadFile(Drive service, File file) {
         if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
@@ -348,11 +328,14 @@ public class DriveHelper extends Activity {
             return null;
         }
     }
+*/
 
+/*
     private Drive getDriveService(GoogleAccountCredential credential) {
         return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
                 .build();
     }
+*/
 
     public void showToast(final String toast) {
         runOnUiThread(new Runnable() {

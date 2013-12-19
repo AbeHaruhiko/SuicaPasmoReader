@@ -2,6 +2,7 @@ package jp.caliconography.suicapasmoreader.util;
 
 import android.content.res.AssetManager;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +10,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ExcelFileUtil {
 
@@ -23,8 +24,7 @@ public class ExcelFileUtil {
         // Android用に修正
         InputStream inp = assetManager.open(fileName);
 
-//        InputStream inp = new FileInputStream(fileName);
-        Workbook wb = WorkbookFactory.create(inp);
+        Workbook wb = new HSSFWorkbook(inp);
         System.out.println("ファイル名「" + fileName + "」を読込ました");
         return wb;
     }
@@ -53,7 +53,13 @@ public class ExcelFileUtil {
     // Excelファイルの出力
     public static void write(Workbook wb, String outFile) throws Exception {
         // Android用に修正
-        OutputStream out = new FileOutputStream(Environment.getExternalStorageDirectory() + "/spr/" + outFile);
+//        OutputStream out = new FileOutputStream(Environment.c() + "/spr/" + outFile);
+        File outDir = new File(Environment.getExternalStorageDirectory(), "spr");
+//        File outDir = new File("/sdcard", "spr");
+        if (!outDir.exists()) {
+            if(outDir.mkdir()) Log.d("ExcelFIleUtil", outDir.getAbsolutePath());
+        }
+        OutputStream out = new FileOutputStream(outDir.getAbsolutePath() + "/" + outFile);
 //        OutputStream out = new FileOutputStream(outFile);
         wb.write(out);
         System.out.println("ファイル名「" + outFile + "」が出力されました");
