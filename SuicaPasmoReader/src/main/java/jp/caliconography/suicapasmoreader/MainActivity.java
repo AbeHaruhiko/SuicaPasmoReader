@@ -27,13 +27,15 @@ import net.kazzz.felica.suica.Suica;
 
 import java.util.ArrayList;
 
+import jp.caliconography.suicapasmoreader.suica.HistoryBean;
+
 public class MainActivity extends ActionBarActivity  implements View.OnClickListener, AbstractNfcTagFragment.INfcTagListener {
 
     private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
     private NfcFeliCaTagFragment mFeliCafragment;
 
-    private ArrayList<Suica.History> mHistories;
+    private ArrayList<HistoryBean> mHistories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

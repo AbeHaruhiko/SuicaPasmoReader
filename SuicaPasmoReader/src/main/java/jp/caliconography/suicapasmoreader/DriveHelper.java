@@ -34,6 +34,7 @@ import net.kazzz.felica.suica.Suica;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
+import jp.caliconography.suicapasmoreader.suica.HistoryBean;
 import jp.caliconography.suicapasmoreader.util.DetailsData;
 import jp.caliconography.suicapasmoreader.util.ExcelFileUtil;
 import jp.caliconography.suicapasmoreader.util.HeaderData;
@@ -159,7 +160,7 @@ public class DriveHelper extends Activity {
 
             // create data
             List<ReportData> dataList = new ArrayList<ReportData>();
-          dataList.add(setData((ArrayList<Suica.History>)this.getIntent().getSerializableExtra("histories")));
+          dataList.add(setData((ArrayList<HistoryBean>)this.getIntent().getSerializableExtra("histories")));
 //          dataList.add(setData(2));
 
             SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
@@ -173,7 +174,7 @@ public class DriveHelper extends Activity {
     }
 
     // setup test data
-    private ReportData setData(ArrayList<Suica.History> histories) {
+    private ReportData setData(ArrayList<HistoryBean> histories) {
 
 
         ReportData dataContainer = new ReportData();
@@ -201,9 +202,9 @@ public class DriveHelper extends Activity {
         dataListMap.put(getString(R.string.KEY_REMAIN), new String[histories.size()]);
 
         for (int i = 0; i < histories.size(); i++) {
-            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(histories.get(i).getProccessDate());
+            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(histories.get(i).getProcessDate());
             ((String[])dataListMap.get(getString(R.string.KEY_FROM_TO)))[i] = histories.get(i).getEntranceStation() + "→" + histories.get(i).getExitStation();
-            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(histories.get(i).getBalance());
+            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(histories.get(i).getRemain());
         }
 
 

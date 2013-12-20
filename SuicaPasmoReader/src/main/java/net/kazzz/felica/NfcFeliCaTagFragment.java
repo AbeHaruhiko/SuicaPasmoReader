@@ -27,6 +27,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import jp.caliconography.suicapasmoreader.suica.HistoryBean;
+
 /**
  * NfcでFeliCa(FeliCa Lite)Tagを読み込むためのフラグメントを提供します
  * 
@@ -211,9 +213,9 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
         }
     }
 
-    public ArrayList<Suica.History> getFeliCaHistoryData() throws Exception {
+    public ArrayList<HistoryBean> getFeliCaHistoryData() throws Exception {
         try {
-            ArrayList<Suica.History> histories = new ArrayList<Suica.History>();
+            ArrayList<HistoryBean> histories = new ArrayList();
 
             if ( this.isFeliCaLite() ) {
                 throw new FeliCaException("Tag is not FeliCa (maybe FeliCaLite)");
@@ -230,7 +232,15 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
 
             StringBuilder sb = new StringBuilder();
             while ( result != null && result.getStatusFlag1() == 0  ) {
-                histories.add(new Suica.History(result.getBlockData(), this.getActivity()));
+
+                Suica.History s = new Suica.History(result.getBlockData(), this.getActivity());
+
+                HistoryBean historyBean = new HistoryBean();
+                historyBean.setEntranceStation(s.isByBus()? s.getEntranceStation()[1]: s.getEntranceStation()[2]);
+                historyBean.setProcessDate(s.getProccessDate());
+                historyBean.setRemain(s.getBalance());
+                historyBean.setExitStation(s.isByBus()? s.getExitStation()[1]: s.getExitStation()[2]);
+                histories.add(historyBean);
 
                 addr++;
                 //Log.d(TAG, "addr = " + addr);
