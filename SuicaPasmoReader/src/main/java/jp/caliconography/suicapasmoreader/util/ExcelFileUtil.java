@@ -13,6 +13,9 @@ import java.io.OutputStream;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 
+/**
+ * original source by http://codezine.jp/
+ */
 public class ExcelFileUtil {
 
     private ExcelFileUtil() {

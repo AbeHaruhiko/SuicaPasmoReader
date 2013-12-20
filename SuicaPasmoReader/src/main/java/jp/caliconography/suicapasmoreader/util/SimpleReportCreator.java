@@ -1,5 +1,7 @@
 package jp.caliconography.suicapasmoreader.util;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +15,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import jp.caliconography.suicapasmoreader.util.ReportData;
 
+/**
+ * original source by http://codezine.jp/
+ */
 public class SimpleReportCreator {
 
     private Workbook wb;
@@ -65,7 +70,6 @@ public class SimpleReportCreator {
         for (int sheetIndex = 0; sheetIndex < numOfSheet; sheetIndex++) {
             Sheet sheet = wb.getSheetAt(sheetIndex);
 
-/*
             // ワークシートに対応するデータを取得
             reportData = reportList.get(sheetIndex);
             headerMap = reportData.getHeader().getDataMap();
@@ -85,6 +89,7 @@ public class SimpleReportCreator {
                 // セル単位の繰返し処理
                 int lastColumn = row.getLastCellNum();
                 for (int columnIndex = 0; columnIndex < lastColumn; columnIndex++) {
+                    Log.d("SuicaPasmoReader", rowIndex + ":" + columnIndex);
                     Cell cell = row.getCell(columnIndex);
                     if (cell == null) {
                         continue;
@@ -101,7 +106,6 @@ public class SimpleReportCreator {
                     }
                 }
             }
-*/
         }
         // 完成したワークブックオブジェクトを戻す
         return wb;

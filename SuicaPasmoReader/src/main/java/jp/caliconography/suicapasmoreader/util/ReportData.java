@@ -1,5 +1,8 @@
 package jp.caliconography.suicapasmoreader.util;
 
+/**
+ * original source by http://codezine.jp/
+ */
 public class ReportData {
 
 	private HeaderData header;

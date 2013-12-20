@@ -23,12 +23,17 @@ import net.kazzz.AbstractNfcTagFragment;
 import net.kazzz.felica.FeliCaException;
 import net.kazzz.felica.NfcFeliCaTagFragment;
 import net.kazzz.felica.lib.FeliCaLib;
+import net.kazzz.felica.suica.Suica;
+
+import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity  implements View.OnClickListener, AbstractNfcTagFragment.INfcTagListener {
 
     private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
     private NfcFeliCaTagFragment mFeliCafragment;
+
+    private ArrayList<Suica.History> mHistories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +70,24 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Intent intent;
+
         switch (item.getItemId()){ // if使うとエラー（itemがInt形式なため）
             case android.R.id.home:   // アプリアイコン（ホームアイコン）を押した時の処理
-                Intent intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                break;
+
+            case R.id.action_save:
+
+                try {
+                    intent = new Intent(getApplicationContext(), DriveHelper.class);
+                    intent.putExtra("histories", mHistories);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
 
             case R.id.action_refresh:
@@ -93,6 +111,7 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                             try {
                                 if ( mLastFragment != null && mLastFragment instanceof NfcFeliCaTagFragment) {
                                     NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFragment;
+                                    mHistories = nfcf.getFeliCaHistoryData();
                                     return nfcf.dumpFeliCaHistoryData();
                                 }
                             } catch (Exception e) {
@@ -184,6 +203,7 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                                 Intent intent =
                                         new Intent(getApplicationContext(), DriveHelper.class);
 //                                intent.putExtra("nfcTag", mLastFragment.getNfcTag());
+                                intent.putExtra("histories", mHistories);
                                 startActivity(intent);
                                 return "";
                             } catch (Exception e) {
@@ -194,6 +214,8 @@ public class MainActivity extends ActionBarActivity  implements View.OnClickList
                             try {
                                 if ( mLastFragment != null && mLastFragment instanceof NfcFeliCaTagFragment) {
                                     NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFragment;
+//                                    return nfcf.dumpFeliCaHistoryData();
+                                    mHistories = nfcf.getFeliCaHistoryData();
                                     return nfcf.dumpFeliCaHistoryData();
                                 }
                             } catch (Exception e) {

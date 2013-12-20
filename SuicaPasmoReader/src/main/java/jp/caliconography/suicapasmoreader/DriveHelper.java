@@ -6,10 +6,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -25,9 +30,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import net.kazzz.felica.suica.Suica;
+
 import org.apache.poi.ss.usermodel.Workbook;
 
+import jp.caliconography.suicapasmoreader.util.DetailsData;
 import jp.caliconography.suicapasmoreader.util.ExcelFileUtil;
+import jp.caliconography.suicapasmoreader.util.HeaderData;
 import jp.caliconography.suicapasmoreader.util.ReportData;
 import jp.caliconography.suicapasmoreader.util.SimpleReportCreator;
 
@@ -150,7 +159,7 @@ public class DriveHelper extends Activity {
 
             // create data
             List<ReportData> dataList = new ArrayList<ReportData>();
-//          dataList.add(setData(1));
+          dataList.add(setData((ArrayList<Suica.History>)this.getIntent().getSerializableExtra("histories")));
 //          dataList.add(setData(2));
 
             SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
@@ -161,6 +170,55 @@ public class DriveHelper extends Activity {
             e.printStackTrace();
         }
 
+    }
+
+    // setup test data
+    private ReportData setData(ArrayList<Suica.History> histories) {
+
+
+        ReportData dataContainer = new ReportData();
+
+        HeaderData header = new HeaderData();
+        Map<String, String> dataMap = header.getDataMap();
+
+        DetailsData details = new DetailsData();
+        Map<String, Object[]> dataListMap = details.getDataListMap();
+
+        // ヘッダ
+        header.setReportName("経費精算書");
+        dataMap.put("$APPLY_DATE", new SimpleDateFormat("yyyy'年'MM'月'dd'日'").format(new Date()));
+        dataMap.put("$APPLYER_NAME", "");
+
+
+        // 履歴の準備
+        Collections.reverse(histories);
+//        HashMap<String, String[]> historyMap = new HashMap();
+        dataListMap.put(getString(R.string.KEY_WORK_DATE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_WORK), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_FROM_TO), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_EXPENSE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_PRICE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_REMAIN), new String[histories.size()]);
+
+        for (int i = 0; i < histories.size(); i++) {
+            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(histories.get(i).getProccessDate());
+            ((String[])dataListMap.get(getString(R.string.KEY_FROM_TO)))[i] = histories.get(i).getEntranceStation() + "→" + histories.get(i).getExitStation();
+            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(histories.get(i).getBalance());
+        }
+
+
+//        dataListMap.put("$WORK_DATE[]", new String[] { "2013/12/20", "2013/12/18", "2013/12/19" });
+//        dataListMap.put("$WORK[]", new String[] {"日清医", "JHF", "ほげ" });
+//        dataListMap.put("$FROM_TO[]", new String[] { "京成立石→秋葉原", "東京→有楽町", "東京→東東京" });
+//        dataListMap.put("$EXPENSE[]", new String[] { "12000", "14000", "16000" });
+//        dataListMap.put("$PRICE[]", new String[] { "12000", "14000", "16000" });
+//        dataListMap.put("$REMAIN[]", new String[] { "12000", "14000", "16000" });
+
+        details.setNumOfDetails(dataListMap.get(getString(R.string.KEY_WORK_DATE)).length);
+
+        dataContainer.setHeader(header);
+        dataContainer.setDetails(details);
+        return dataContainer;
     }
 
 /*

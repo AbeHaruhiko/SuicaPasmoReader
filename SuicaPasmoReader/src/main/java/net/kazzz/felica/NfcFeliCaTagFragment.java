@@ -25,6 +25,8 @@ import android.nfc.tech.NfcF;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * NfcでFeliCa(FeliCa Lite)Tagを読み込むためのフラグメントを提供します
  * 
@@ -208,5 +210,41 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
             throw e;
         }
     }
-    
+
+    public ArrayList<Suica.History> getFeliCaHistoryData() throws Exception {
+        try {
+            ArrayList<Suica.History> histories = new ArrayList<Suica.History>();
+
+            if ( this.isFeliCaLite() ) {
+                throw new FeliCaException("Tag is not FeliCa (maybe FeliCaLite)");
+            }
+            FeliCaTag f = this.createFeliCaTag();
+
+            //polling は IDm、PMmを取得するのに必要
+            f.polling(FeliCaLib.SYSTEMCODE_PASMO);
+
+            //read
+            ServiceCode sc = new ServiceCode(FeliCaLib.SERVICE_SUICA_HISTORY);
+            byte addr = 0;
+            ReadResponse result = f.readWithoutEncryption(sc, addr);
+
+            StringBuilder sb = new StringBuilder();
+            while ( result != null && result.getStatusFlag1() == 0  ) {
+                histories.add(new Suica.History(result.getBlockData(), this.getActivity()));
+
+                addr++;
+                //Log.d(TAG, "addr = " + addr);
+                result = f.readWithoutEncryption(sc, addr);
+            }
+
+            String str = sb.toString();
+            Log.d(TAG, str);
+            return histories;
+        } catch (FeliCaException e) {
+            e.printStackTrace();
+            Log.e(TAG, "readHistoryData", e);
+            throw e;
+        }
+    }
+
 }

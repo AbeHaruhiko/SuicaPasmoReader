@@ -20,5 +20,11 @@
     <string name="save">save</string>
     <string name="load">load</string>
     <string name="action_save">保存</string>
+    <string name="KEY_WORK_DATE">$WORK_DATE[]</string>
+    <string name="KEY_WORK">$WORK[]</string>
+    <string name="KEY_FROM_TO">$FROM_TO[]</string>
+    <string name="KEY_EXPENSE">$EXPENSE[]</string>
+    <string name="KEY_PRICE">$PRICE[]</string>
+    <string name="KEY_REMAIN">$REMAIN[]</string>
 
 </resources>

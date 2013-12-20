@@ -17,6 +17,7 @@ import static net.kazzz.felica.suica.DBUtil.COLUMN_ID;
 import static net.kazzz.felica.suica.DBUtil.TABLE_IRUCA_STATIONCODE;
 import static net.kazzz.felica.suica.DBUtil.TABLE_STATIONCODE;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -274,7 +275,46 @@ public class Suica {
             //sb.append("支払種別: " + this.getPaymentType() + "\n");
             sb.append("残高: " + nf.format(this.getBalance()) + "\n");
             return sb.toString();
-       }
+        }
+
+        public String toBean() {
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            nf.setMaximumFractionDigits(0);
+            SimpleDateFormat dfl = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            SimpleDateFormat dfs = new SimpleDateFormat("yyyy/MM/dd");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("機器種別: " + this.getConsoleType() + "\n");
+            sb.append("処理種別: " + this.getProcessType() + "\n");
+            if ( !this.isProductSales() ) {
+                sb.append("処理日付: " + dfs.format(this.getProccessDate()) + "\n");
+                if ( this.isByBus() ) {
+                    String[] busStopInfo = this.getEntranceStation();
+                    sb.append("利用会社: " + busStopInfo[0]);
+                    sb.append("停留所: " + busStopInfo[1] + "\n");
+                } else {
+                    String[] entranceInfo = this.getEntranceStation();
+                    String[] exitInfo = this.getExitStation();
+
+                    sb.append("入場: " + "\n");
+                    sb.append("  利用会社: " + entranceInfo[0]+ "\n");
+                    sb.append("  路線名: " + entranceInfo[1]+ "線\n");
+                    sb.append("  駅名: " + entranceInfo[2] + "\n");
+
+                    if ( !this.isCharge()) {
+                        sb.append("出場: " + "\n");
+                        sb.append("  利用会社: " + exitInfo[0]+ "\n");
+                        sb.append("  路線名: " + exitInfo[1]+ "線\n");
+                        sb.append("  駅名: " + exitInfo[2] + "\n");
+                    }
+                }
+            } else {
+                sb.append("処理日付: " + dfl.format(this.getProccessDate()) + "\n");
+            }
+            //sb.append("支払種別: " + this.getPaymentType() + "\n");
+            sb.append("残高: " + nf.format(this.getBalance()) + "\n");
+            return sb.toString();
+        }
 
 
 

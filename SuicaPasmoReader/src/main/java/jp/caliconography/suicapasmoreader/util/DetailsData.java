@@ -3,6 +3,9 @@ package jp.caliconography.suicapasmoreader.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * original source by http://codezine.jp/
+ */
 public class DetailsData {
 	
 	private int numOfDtails = 0;
