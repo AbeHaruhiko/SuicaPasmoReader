@@ -26,5 +26,6 @@
     <string name="KEY_EXPENSE">$EXPENSE[]</string>
     <string name="KEY_PRICE">$PRICE[]</string>
     <string name="KEY_REMAIN">$REMAIN[]</string>
+    <string name="KEY_IS_PRODUCT_SALES">$IS_PRODUCT_SALES[]</string>
 
 </resources>

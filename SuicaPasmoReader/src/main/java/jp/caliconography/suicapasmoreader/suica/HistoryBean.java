@@ -8,9 +8,28 @@ import java.util.Date;
  */
 public class HistoryBean implements Serializable{
 
+    public String getProcessType() {
+        return processType;
+    }
+
+    public void setProcessType(String processType) {
+        this.processType = processType;
+    }
+
+    private String processType;
     private Date processDate;
     private String entranceStation;
     private String exitStation;
+    private Long remain;
+    private boolean isProductSales;
+
+    public boolean isProductSales() {
+        return isProductSales;
+    }
+
+    public void setProductSales(boolean isProductSales) {
+        this.isProductSales = isProductSales;
+    }
 
     public Long getRemain() {
         return remain;
@@ -20,7 +39,6 @@ public class HistoryBean implements Serializable{
         this.remain = remain;
     }
 
-    private Long remain;
 
     public Date getProcessDate() {
         return processDate;

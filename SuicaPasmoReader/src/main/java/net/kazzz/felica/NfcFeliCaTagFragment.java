@@ -236,10 +236,12 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
                 Suica.History s = new Suica.History(result.getBlockData(), this.getActivity());
 
                 HistoryBean historyBean = new HistoryBean();
-                historyBean.setEntranceStation(s.isByBus()? s.getEntranceStation()[1]: s.getEntranceStation()[2]);
+                historyBean.setProcessType(s.getProcessType());
                 historyBean.setProcessDate(s.getProccessDate());
-                historyBean.setRemain(s.getBalance());
+                historyBean.setProductSales(s.isProductSales());
+                historyBean.setEntranceStation(s.isByBus()? s.getEntranceStation()[1]: s.getEntranceStation()[2]);
                 historyBean.setExitStation(s.isByBus()? s.getExitStation()[1]: s.getExitStation()[2]);
+                historyBean.setRemain(s.getBalance());
                 histories.add(historyBean);
 
                 addr++;

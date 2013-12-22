@@ -200,11 +200,14 @@ public class DriveHelper extends Activity {
         dataListMap.put(getString(R.string.KEY_EXPENSE), new String[histories.size()]);
         dataListMap.put(getString(R.string.KEY_PRICE), new String[histories.size()]);
         dataListMap.put(getString(R.string.KEY_REMAIN), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_IS_PRODUCT_SALES), new String[histories.size()]);
 
         for (int i = 0; i < histories.size(); i++) {
-            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(histories.get(i).getProcessDate());
-            ((String[])dataListMap.get(getString(R.string.KEY_FROM_TO)))[i] = histories.get(i).getEntranceStation() + "→" + histories.get(i).getExitStation();
-            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(histories.get(i).getRemain());
+            HistoryBean historyBean = histories.get(i);
+            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(historyBean.getProcessDate());
+            ((String[])dataListMap.get(getString(R.string.KEY_FROM_TO)))[i] = historyBean.isProductSales() ? historyBean.getProcessType(): (historyBean.getEntranceStation() + "→" + historyBean.getExitStation());
+            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(historyBean.getRemain());
+            ((String[])dataListMap.get(getString(R.string.KEY_IS_PRODUCT_SALES)))[i] = historyBean.isProductSales() ? "1": "";
         }
 
 
