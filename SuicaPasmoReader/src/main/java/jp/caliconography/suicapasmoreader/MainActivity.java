@@ -1,5 +1,6 @@
 package jp.caliconography.suicapasmoreader;
 
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
@@ -38,14 +39,38 @@ import jp.caliconography.suicapasmoreader.excelutil.ExcelFileUtil;
 import jp.caliconography.suicapasmoreader.excelutil.HeaderData;
 import jp.caliconography.suicapasmoreader.excelutil.ReportData;
 import jp.caliconography.suicapasmoreader.excelutil.SimpleReportCreator;
+import jp.caliconography.suicapasmoreader.util.ProgressDialogFragment;
 
-public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener, LoaderManager.LoaderCallbacks {
+public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener {
 
     private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
     private NfcFeliCaTagFragment mFeliCafragment;
 
     private ArrayList<HistoryBean> mHistories;
+
+    private ProgressDialogFragment mDialog;
+
+    private LoaderManager.LoaderCallbacks<String> loaderCallbacks = new LoaderManager.LoaderCallbacks<String>() {
+
+        @Override
+        public Loader onCreateLoader(int i, Bundle bundle) {
+            mDialog = ProgressDialogFragment.newInstance(R.string.MES_READING_HISTORY);
+            mDialog.show(getSupportFragmentManager(), null);
+            return null;
+        }
+
+        @Override
+        public void onLoadFinished(Loader loader, String result) {
+            mDialog.dismiss();
+        }
+
+        @Override
+        public void onLoaderReset(Loader loader) {
+
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,21 +241,6 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         dataContainer.setHeader(header);
         dataContainer.setDetails(details);
         return dataContainer;
-    }
-
-    @Override
-    public Loader onCreateLoader(int i, Bundle bundle) {
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(Loader loader, Object o) {
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader loader) {
-
     }
 
     /**
