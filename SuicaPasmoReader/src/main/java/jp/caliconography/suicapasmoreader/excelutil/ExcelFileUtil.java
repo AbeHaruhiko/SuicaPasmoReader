@@ -1,11 +1,10 @@
-package jp.caliconography.suicapasmoreader.util;
+package jp.caliconography.suicapasmoreader.excelutil;
 
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;

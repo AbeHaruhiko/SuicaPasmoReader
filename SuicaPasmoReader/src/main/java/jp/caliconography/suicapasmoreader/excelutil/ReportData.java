@@ -1,4 +1,4 @@
-package jp.caliconography.suicapasmoreader.util;
+package jp.caliconography.suicapasmoreader.excelutil;
 
 /**
  * original source by http://codezine.jp/

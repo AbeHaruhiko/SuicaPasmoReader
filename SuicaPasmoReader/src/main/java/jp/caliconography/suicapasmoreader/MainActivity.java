@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,13 +33,13 @@ import java.util.List;
 import java.util.Map;
 
 import jp.caliconography.suicapasmoreader.suica.HistoryBean;
-import jp.caliconography.suicapasmoreader.util.DetailsData;
-import jp.caliconography.suicapasmoreader.util.ExcelFileUtil;
-import jp.caliconography.suicapasmoreader.util.HeaderData;
-import jp.caliconography.suicapasmoreader.util.ReportData;
-import jp.caliconography.suicapasmoreader.util.SimpleReportCreator;
+import jp.caliconography.suicapasmoreader.excelutil.DetailsData;
+import jp.caliconography.suicapasmoreader.excelutil.ExcelFileUtil;
+import jp.caliconography.suicapasmoreader.excelutil.HeaderData;
+import jp.caliconography.suicapasmoreader.excelutil.ReportData;
+import jp.caliconography.suicapasmoreader.excelutil.SimpleReportCreator;
 
-public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener {
+public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener, LoaderManager.LoaderCallbacks {
 
     private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
@@ -214,6 +216,21 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         dataContainer.setHeader(header);
         dataContainer.setDetails(details);
         return dataContainer;
+    }
+
+    @Override
+    public Loader onCreateLoader(int i, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Object o) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+
     }
 
     /**

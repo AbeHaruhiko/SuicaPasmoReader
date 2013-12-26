@@ -1,4 +1,4 @@
-package jp.caliconography.suicapasmoreader.util;
+package jp.caliconography.suicapasmoreader.excelutil;
 
 import android.util.Log;
 
@@ -12,8 +12,6 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-
-import jp.caliconography.suicapasmoreader.util.ReportData;
 
 /**
  * original source by http://codezine.jp/

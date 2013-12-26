@@ -1,4 +1,4 @@
-package jp.caliconography.suicapasmoreader.util;
+package jp.caliconography.suicapasmoreader.excelutil;
 
 import java.util.HashMap;
 import java.util.Map;
