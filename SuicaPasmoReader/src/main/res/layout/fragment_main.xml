@@ -27,58 +27,6 @@
             </TextView>
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/pnl_uiBlock"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="vertical"
-            android:visibility="visible" >
-
-            <LinearLayout
-                android:id="@+id/pnl_felicaBlock"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/btn_read"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/read_label"
-                    android:onClick="onClick">
-                </Button>
-
-                <Button
-                    android:id="@+id/btn_hitory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/history_label"
-                    android:onClick="onClick">
-                </Button>
-
-                <Button
-                    android:id="@+id/btn_inout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/inout_label"
-                    android:visibility="gone" >
-                </Button>
-
-                <Button
-                    android:id="@+id/btn_write"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:text="@string/felicalite_label"
-                    android:onClick="onClick">
-                </Button>
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

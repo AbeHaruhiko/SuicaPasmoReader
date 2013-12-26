@@ -27,5 +27,7 @@
     <string name="KEY_PRICE">$PRICE[]</string>
     <string name="KEY_REMAIN">$REMAIN[]</string>
     <string name="KEY_IS_PRODUCT_SALES">$IS_PRODUCT_SALES[]</string>
+    <string name="MES_READING_HISTORY">読み込み中...数秒かかります。Suica/Pasmoを離さないでください。</string>
+    <string name="MES_FAILED_TO_GET_FELICA_ID">Felica IDm を取得できませんでした</string>
 
 </resources>
