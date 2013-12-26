@@ -21,9 +21,21 @@ import net.kazzz.felica.FeliCaException;
 import net.kazzz.felica.NfcFeliCaTagFragment;
 import net.kazzz.felica.lib.FeliCaLib;
 
+import org.apache.poi.ss.usermodel.Workbook;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import jp.caliconography.suicapasmoreader.suica.HistoryBean;
+import jp.caliconography.suicapasmoreader.util.DetailsData;
+import jp.caliconography.suicapasmoreader.util.ExcelFileUtil;
+import jp.caliconography.suicapasmoreader.util.HeaderData;
+import jp.caliconography.suicapasmoreader.util.ReportData;
+import jp.caliconography.suicapasmoreader.util.SimpleReportCreator;
 
 public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener {
 
@@ -80,9 +92,8 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
             case R.id.action_save:
 
                 try {
-                    intent = new Intent(getApplicationContext(), DriveHelper.class);
-                    intent.putExtra("histories", mHistories);
-                    startActivity(intent);
+                    save2Excel();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -138,6 +149,71 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void save2Excel() {
+
+        // create workbook
+        Workbook wb = null;
+        try {
+            wb = ExcelFileUtil.getWorkbook(getAssets(), "template.xls");
+
+            // create data
+            List<ReportData> dataList = new ArrayList<ReportData>();
+            dataList.add(setData(mHistories));
+
+            SimpleReportCreator reportCreator = new SimpleReportCreator(wb, dataList);
+
+            ExcelFileUtil.write(reportCreator.create(), "経費精算書.xls");
+        } catch (Exception e) {
+            // TODO
+            e.printStackTrace();
+        }
+
+    }
+
+    // setup test data
+    private ReportData setData(ArrayList<HistoryBean> histories) {
+
+
+        ReportData dataContainer = new ReportData();
+
+        HeaderData header = new HeaderData();
+        Map<String, String> dataMap = header.getDataMap();
+
+        DetailsData details = new DetailsData();
+        Map<String, Object[]> dataListMap = details.getDataListMap();
+
+        // ヘッダ
+        header.setReportName("経費精算書");
+        dataMap.put("$APPLY_DATE", new SimpleDateFormat("yyyy'年'MM'月'dd'日'").format(new Date()));
+        dataMap.put("$APPLYER_NAME", "");
+
+
+        // 履歴の準備
+        Collections.reverse(histories);
+        dataListMap.put(getString(R.string.KEY_WORK_DATE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_WORK), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_FROM_TO), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_EXPENSE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_PRICE), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_REMAIN), new String[histories.size()]);
+        dataListMap.put(getString(R.string.KEY_IS_PRODUCT_SALES), new String[histories.size()]);
+
+        for (int i = 0; i < histories.size(); i++) {
+            HistoryBean historyBean = histories.get(i);
+            ((String[])dataListMap.get(getString(R.string.KEY_WORK_DATE)))[i] = new SimpleDateFormat("yyyy/MM/dd").format(historyBean.getProcessDate());
+            ((String[])dataListMap.get(getString(R.string.KEY_FROM_TO)))[i] = historyBean.isProductSales() ? historyBean.getProcessType(): (historyBean.getEntranceStation() + "→" + historyBean.getExitStation());
+            ((String[])dataListMap.get(getString(R.string.KEY_REMAIN)))[i] = Long.toString(historyBean.getRemain());
+            ((String[])dataListMap.get(getString(R.string.KEY_IS_PRODUCT_SALES)))[i] = historyBean.isProductSales() ? "1": "";
+        }
+
+
+        details.setNumOfDetails(dataListMap.get(getString(R.string.KEY_WORK_DATE)).length);
+
+        dataContainer.setHeader(header);
+        dataContainer.setDetails(details);
+        return dataContainer;
     }
 
     /**
