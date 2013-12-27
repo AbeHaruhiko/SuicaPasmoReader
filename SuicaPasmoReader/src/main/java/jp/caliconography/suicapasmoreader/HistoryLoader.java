@@ -34,8 +34,7 @@ public class HistoryLoader extends AsyncTaskLoader {
             if ( mLastFfagment != null && mLastFfagment instanceof NfcFeliCaTagFragment) {
                 NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFfagment;
 
-                historiesMap.put("dump", nfcf.dumpFeliCaHistoryData());
-                historiesMap.put("histories", nfcf.getFeliCaHistoryData());
+                historiesMap = nfcf.dumpFeliCaHistoryData();
             } else {
                 historiesMap.put("dump", "");
             }

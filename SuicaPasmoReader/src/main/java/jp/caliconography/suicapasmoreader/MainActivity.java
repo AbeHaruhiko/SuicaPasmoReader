@@ -141,49 +141,6 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         return super.onOptionsItemSelected(item);
     }
 
-    private void readHistory() {
-        try {
-            final ProgressDialog dialog = new ProgressDialog(this);
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setIndeterminate(true);
-
-            AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
-                @Override
-                protected void onPreExecute() {
-                    dialog.setMessage(getString(R.string.MES_READING_HISTORY));
-                    dialog.show();
-                }
-
-                @Override
-                protected String doInBackground(Void... arg0) {
-                    try {
-                        if ( mLastFragment != null && mLastFragment instanceof NfcFeliCaTagFragment) {
-                            NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFragment;
-                            mHistories = nfcf.getFeliCaHistoryData();
-                            return nfcf.dumpFeliCaHistoryData();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return "";
-                }
-
-                /* (non-Javadoc)
-                 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-                 */
-                @Override
-                protected void onPostExecute(String result) {
-                    dialog.dismiss();
-                    TextView tv_tag = (TextView) findViewById(R.id.result_tv);
-                    if (result != null && result.length() > 0) tv_tag.setText(result);
-                }
-            };
-
-            task.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void save2Excel() {
 

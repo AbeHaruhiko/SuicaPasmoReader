@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jp.caliconography.suicapasmoreader.suica.HistoryBean;
 
@@ -173,7 +174,7 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
      * FeliCa 使用履歴をダンプします
      * @return
      */
-    public String dumpFeliCaHistoryData() throws Exception {
+    public HashMap<String, Object> dumpFeliCaHistoryData() throws Exception {
         try {
             if ( this.isFeliCaLite() ) {
                 throw new FeliCaException("Tag is not FeliCa (maybe FeliCaLite)");
@@ -189,6 +190,10 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
             ReadResponse result = f.readWithoutEncryption(sc, addr);
 
             StringBuilder sb = new StringBuilder();
+            ArrayList<HistoryBean> histories = new ArrayList();
+
+            HashMap<String, Object> historiesMap = new HashMap<String, Object>();
+
             while ( result != null && result.getStatusFlag1() == 0  ) {
                 sb.append("履歴 No.  " + (addr + 1) + "\n");
                 sb.append("---------\n");
@@ -198,14 +203,31 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
                 sb.append("---------------------------------------\n");
                 sb.append("\n");
 
+                HistoryBean historyBean = new HistoryBean();
+                historyBean.setProcessType(s.getProcessType());
+                historyBean.setProcessDate(s.getProccessDate());
+                historyBean.setProductSales(s.isProductSales());
+                historyBean.setEntranceStation(s.isByBus()? s.getEntranceStation()[1]: s.getEntranceStation()[2]);
+                historyBean.setExitStation(s.isByBus()? s.getExitStation()[1]: s.getExitStation()[2]);
+                historyBean.setRemain(s.getBalance());
+                histories.add(historyBean);
+
+
                 addr++;
                 //Log.d(TAG, "addr = " + addr);
                 result = f.readWithoutEncryption(sc, addr);
+
+
+
             }
 
             String str = sb.toString();
             Log.d(TAG, str);
-            return str;
+
+            historiesMap.put("dump", sb.toString());
+            historiesMap.put("histories", histories);
+
+            return historiesMap;
         } catch (FeliCaException e) {
             e.printStackTrace();
             Log.e(TAG, "readHistoryData", e);
@@ -213,6 +235,7 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
         }
     }
 
+/*
     public ArrayList<HistoryBean> getFeliCaHistoryData() throws Exception {
         try {
             ArrayList<HistoryBean> histories = new ArrayList();
@@ -258,5 +281,6 @@ public class NfcFeliCaTagFragment extends AbstractNfcTagFragment {
             throw e;
         }
     }
+*/
 
 }
