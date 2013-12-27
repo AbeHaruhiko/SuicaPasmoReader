@@ -1,5 +1,6 @@
 package jp.caliconography.suicapasmoreader;
 
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
@@ -38,14 +39,47 @@ import jp.caliconography.suicapasmoreader.excelutil.ExcelFileUtil;
 import jp.caliconography.suicapasmoreader.excelutil.HeaderData;
 import jp.caliconography.suicapasmoreader.excelutil.ReportData;
 import jp.caliconography.suicapasmoreader.excelutil.SimpleReportCreator;
+import jp.caliconography.suicapasmoreader.util.Utils;
 
-public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener, LoaderManager.LoaderCallbacks {
+public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener {
 
     private String TAG = this.getClass().getSimpleName();
     private AbstractNfcTagFragment mLastFragment;
     private NfcFeliCaTagFragment mFeliCafragment;
 
     private ArrayList<HistoryBean> mHistories;
+
+    private LoaderManager.LoaderCallbacks<String> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<String>() {
+
+        @Override
+        public Loader onCreateLoader(int i, Bundle bundle) {
+
+            DialogFragment dialog = new DialogFragment();
+
+            dialog.setCancelable(true);
+            dialog.setArguments(new Bundle().putString(););
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setIndeterminate(true);
+            dialog.setMessage(getString(R.string.MES_READING_HISTORY));
+            dialog.show();
+
+            return new HistoryLoader(getApplicationContext(), mLastFragment, mHistories);
+        }
+
+        @Override
+        public void onLoadFinished(Loader loader, String result) {
+
+            dialog.dismiss();
+            TextView tv_tag = (TextView) findViewById(R.id.result_tv);
+            if (result != null && result.length() > 0) tv_tag.setText(result);
+
+        }
+
+        @Override
+        public void onLoaderReset(Loader loader) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +136,8 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
                 break;
 
             case R.id.action_refresh:
-                readHistory();
+//                readHistory();
+                getSupportLoaderManager().restartLoader(0, null, mLoaderCallbacks);
         }
 
 
@@ -218,20 +253,7 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         return dataContainer;
     }
 
-    @Override
-    public Loader onCreateLoader(int i, Bundle bundle) {
-        return null;
-    }
 
-    @Override
-    public void onLoadFinished(Loader loader, Object o) {
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader loader) {
-
-    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -283,7 +305,8 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
                         throw new FeliCaException(getString(R.string.MES_FAILED_TO_GET_FELICA_ID));
                     }
 
-                    readHistory();
+//                    readHistory();
+                    getSupportLoaderManager().initLoader(0, null, mLoaderCallbacks);
 
                 } catch (Exception e) {
                     e.printStackTrace();
