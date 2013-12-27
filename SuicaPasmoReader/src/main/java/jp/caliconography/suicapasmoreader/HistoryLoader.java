@@ -8,6 +8,7 @@ import net.kazzz.AbstractNfcTagFragment;
 import net.kazzz.felica.NfcFeliCaTagFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jp.caliconography.suicapasmoreader.suica.HistoryBean;
 
@@ -20,26 +21,28 @@ public class HistoryLoader extends AsyncTaskLoader {
     private AbstractNfcTagFragment mLastFfagment;
     private ArrayList<HistoryBean> mHistories;
 
-    public HistoryLoader(Context context, AbstractNfcTagFragment lastFfagment, ArrayList<HistoryBean> histories) {
+    public HistoryLoader(Context context, AbstractNfcTagFragment lastFfagment) {
         super(context);
         this.mContext = context;
         this.mLastFfagment = lastFfagment;
-        this.mHistories = histories;
     }
 
     @Override
-    public String loadInBackground() {
+    public HashMap<String, Object> loadInBackground() {
+        HashMap<String, Object> historiesMap = new HashMap<String, Object>();
         try {
             if ( mLastFfagment != null && mLastFfagment instanceof NfcFeliCaTagFragment) {
                 NfcFeliCaTagFragment nfcf = (NfcFeliCaTagFragment)mLastFfagment;
-                mHistories = nfcf.getFeliCaHistoryData();
-                return nfcf.dumpFeliCaHistoryData();
+
+                historiesMap.put("dump", nfcf.dumpFeliCaHistoryData());
+                historiesMap.put("histories", nfcf.getFeliCaHistoryData());
+            } else {
+                historiesMap.put("dump", "");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return "";
+        return historiesMap;
     }
 
     @Override

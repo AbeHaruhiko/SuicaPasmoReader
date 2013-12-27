@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ import jp.caliconography.suicapasmoreader.excelutil.HeaderData;
 import jp.caliconography.suicapasmoreader.excelutil.ReportData;
 import jp.caliconography.suicapasmoreader.excelutil.SimpleReportCreator;
 import jp.caliconography.suicapasmoreader.util.Utils;
+import jp.caliconography.suicapasmoreader.util.ProgressDialogFragment;
 
 public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFragment.INfcTagListener {
 
@@ -49,29 +51,24 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
 
     private ArrayList<HistoryBean> mHistories;
 
-    private LoaderManager.LoaderCallbacks<String> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<String>() {
+    private LoaderManager.LoaderCallbacks<HashMap<String, Object>> mLoaderCallbacks = new LoaderManager.LoaderCallbacks<HashMap<String, Object>>() {
 
         @Override
         public Loader onCreateLoader(int i, Bundle bundle) {
-
-            DialogFragment dialog = new DialogFragment();
-
-            dialog.setCancelable(true);
-            dialog.setArguments(new Bundle().putString(););
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setIndeterminate(true);
-            dialog.setMessage(getString(R.string.MES_READING_HISTORY));
-            dialog.show();
-
-            return new HistoryLoader(getApplicationContext(), mLastFragment, mHistories);
+            ProgressDialogFragment dialog = ProgressDialogFragment.newInstance(R.string.MES_READING_HISTORY);
+            dialog.show(getSupportFragmentManager(), "dialog");
+            return new HistoryLoader(getApplicationContext(), mLastFragment);
         }
 
         @Override
-        public void onLoadFinished(Loader loader, String result) {
-
-            dialog.dismiss();
+        public void onLoadFinished(Loader<HashMap<String, Object>> loader, HashMap<String, Object> result) {
+            ProgressDialogFragment dialog = (ProgressDialogFragment) getSupportFragmentManager().findFragmentByTag("dialog");
+            if (dialog != null) {
+                dialog.onDismiss(dialog.getDialog());
+            }
             TextView tv_tag = (TextView) findViewById(R.id.result_tv);
-            if (result != null && result.length() > 0) tv_tag.setText(result);
+            tv_tag.setText(result.get("dump").toString());
+            mHistories = (ArrayList<HistoryBean>)result.get("histories");
 
         }
 
@@ -252,8 +249,6 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         dataContainer.setDetails(details);
         return dataContainer;
     }
-
-
 
     /**
      * A placeholder fragment containing a simple view.
