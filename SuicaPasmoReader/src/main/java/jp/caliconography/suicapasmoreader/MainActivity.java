@@ -135,6 +135,14 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
             case R.id.action_refresh:
 //                readHistory();
                 getSupportLoaderManager().restartLoader(0, null, mLoaderCallbacks);
+                break;
+
+            case R.id.action_settings:
+                intent = new Intent(this, SettingsActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+
         }
 
 
@@ -216,8 +224,7 @@ public class MainActivity extends ActionBarActivity  implements AbstractNfcTagFr
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }

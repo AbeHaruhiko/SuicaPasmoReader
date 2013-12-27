@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-
-
-
-
-    <string name="hello_tag">NFCタグをかざしてください</string>
-    <string name="app_name">SuicaPasmoReader</string>
+    <string name="hello_tag">NFCタグをかざしてください(´・ω・｀)</string>
+    <string name="app_name">すぱり</string>
     <string name="action_refresh">再読み込み</string>
     <string name="action_save">保存</string>
+    <string name="action_settings">設定</string>
+
     <string name="KEY_WORK_DATE">$WORK_DATE[]</string>
     <string name="KEY_WORK">$WORK[]</string>
     <string name="KEY_FROM_TO">$FROM_TO[]</string>
@@ -18,7 +14,8 @@
     <string name="KEY_PRICE">$PRICE[]</string>
     <string name="KEY_REMAIN">$REMAIN[]</string>
     <string name="KEY_IS_PRODUCT_SALES">$IS_PRODUCT_SALES[]</string>
-    <string name="MES_READING_HISTORY">読み込み中...数秒かかります。Suica/Pasmoを離さないでください。</string>
+
+    <string name="MES_READING_HISTORY">読み込み中...数秒かかります。ICカードを離さないでください(´・ω・｀)</string>
     <string name="MES_FAILED_TO_GET_FELICA_ID">Felica IDm を取得できませんでした</string>
 
 </resources>
